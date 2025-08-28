@@ -77,3 +77,7 @@ select * from tbl_todo order by tno desc limit 10;
 select * from tbl_todo order by tno desc limit 10, 10;
 
 
+SHOW VARIABLES LIKE 'character_set%';
+SHOW VARIABLES LIKE 'collation%';
+
+ALTER DATABASE webdb CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci;

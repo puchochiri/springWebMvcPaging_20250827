@@ -62,6 +62,7 @@
               </div>
               <div class="card-body">
                 <form action="/todo/modify" method="post">
+
                 <div class="input-group mb-3">
                   <div class="input-group-text">TNO</div>
                   <input type="text" name="tno" class="form-control"
@@ -78,7 +79,7 @@
                          value=<c:out value="${dto.dueDate}"></c:out>>
                 </div>
                 <div class="input-group mb-3">
-                  <div class="input-group-text">DueDate</div>
+                  <div class="input-group-text">Writer</div>
                   <input type="text" name="writer" class="form-control"
                          value=<c:out value="${dto.writer}"></c:out> readonly/>
                 </div>
@@ -120,7 +121,7 @@
             const serverValidResult = {};
 
       <c:forEach items="${errors}" var="error">
-        serverValidResult['${error.getField}'] = '${error.defaultMessage}'
+        serverValidResult['${error.field}'] = '${error.defaultMessage}'
 
       </c:forEach>
       console.log(serverValidResult)
@@ -133,7 +134,7 @@
         e.preventDefault()
         e.stopPropagation()
 
-        formObj.action = "/todo/remove"
+        formObj.action = `/todo/remove?${pageRequestDTO.link}`
         formObj.method = "post"
 
         formObj.submit()
@@ -142,7 +143,7 @@
       document.querySelector(".btn-primary").addEventListener("click",function (e){
         e.preventDefault();
         e.stopPropagation();
-        formObj.action = "/todo/modify";
+        formObj.action = `/todo/modify?${pageRequestDTO.link}`;
         formObj.method = "post";
 
         formObj.submit();
@@ -152,7 +153,7 @@
         e.preventDefault();
         e.stopPropagation();
 
-        self.location = "/todo/list";
+        self.location = `/todo/list?${pageRequestDTO.link}`;
       },false);
 
 
